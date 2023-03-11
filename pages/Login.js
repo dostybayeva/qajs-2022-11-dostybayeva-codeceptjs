@@ -2,56 +2,99 @@ const { I } = inject();
 
 module.exports = {
     /**
-     * Переходит на стр логиа
+     * Стр логина
+     */
+    loginPage: '/web/index.php/auth/login',
+
+    /**
+     * Форма логина
+     */
+    loginForm: '.orangehrm-login-form',
+
+    /**
+     * Поле ввода логина
+     */
+    usernameField: '[name="username"]',
+
+    /**
+     * Поле ввода пароля
+     */
+    passwordField: '[name="password"]',
+
+    /**
+     * Кнопка логина
+     */
+    loginButton: '.orangehrm-login-button',
+
+    /**
+     * Ошибка при пустом поле логина/пароля
+     */
+    emptyFieldError: '.oxd-input-field-error-message',
+
+    /**
+     * Ошибка при неверном логине/пароле
+     */
+    invalidValueError: '.oxd-alert-content-text',
+
+    /**
+     * Переходит на стр логина
      */
     visit() {
-        I.amOnPage(this.loginUrl);
+        I.amOnPage(this.loginPage);
         I.waitForVisible(this.loginForm);
     },
 
     /**
      * Заполняет поле ввода логина
+     *
+     * @param name
      */
-    fillUserName(name) {
-        I.fillField(this.userNameField, name);
+    fillUsername(name) {
+        I.waitForVisible(this.usernameField);
+        I.fillField(this.usernameField, name);
     },
 
     /**
      * Заполняет поле ввода пароля
+     *
+     * @param password
      */
     fillPassword(password) {
+        I.waitForVisible(this.passwordField);
         I.fillField(this.passwordField, password);
     },
 
     /**
-     *
+     * Кликает по кнопке login
      */
     clickLoginButton() {
+        I.waitForVisible(this.loginButton);
         I.click(this.loginButton);
     },
 
     /**
-     * Стр логина
+     * Достает локатор ошибки при пустом поле логина
+     * @returns {Locator}
      */
-    loginUrl: '/web/index.php/auth/login',
+    emptyUsernameFieldError() {
+        return this.getEmptyFieldErrorLocator(this.usernameField);
+    },
 
     /**
-     * Локатор формы логина
+     * Достает локатор ошибки при пустом поле пароля
+     * @returns {Locator}
      */
-    loginForm: '.orangehrm-login-form',
+    emptyPasswordFieldError() {
+        return this.getEmptyFieldErrorLocator(this.passwordField);
+    },
 
     /**
-     * Локатор поля ввода логина
+     * Достает локатор ошибок для полей логин/пароль
+     *
+     * @param fieldLocator
+     * @returns {Locator}
      */
-    userNameField: '[name="username"]',
-
-    /**
-     * Локатор поля ввода пароля
-     */
-    passwordField: '[name="password"]',
-
-    /**
-     * Локатор кнопки логина
-     */
-    loginButton: '.orangehrm-login-button'
+    getEmptyFieldErrorLocator(fieldLocator) {
+        return locate(this.emptyFieldError).after(locate('div').withChild(fieldLocator));
+    },
 }

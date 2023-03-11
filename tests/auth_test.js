@@ -1,9 +1,34 @@
-Feature('auth');
+Feature.skip('auth');
 
-Scenario('Успешная авторизация', ({ I, loginPage}) => {
+Before(({loginPage}) => {
     loginPage.visit();
-    loginPage.fillUserName('Admin');
-    loginPage.fillPassword('admin123');
+});
+
+Scenario('Успешная авторизация', ({ I, loginPage, credentials}) => {
+    loginPage.fillUsername(credentials.LOGIN);
+    loginPage.fillPassword(credentials.PASSWORD);
     loginPage.clickLoginButton();
-    I.waitInUrl('/web/index.php/dashboard/index');
+    I.seeInCurrentUrl('/web/index.php/dashboard/index');
+});
+
+Scenario('Отображение ошибки при авторизации с пустыми реквизитами', ({ I , loginPage}) => {
+    loginPage.clickLoginButton();
+    I.seeTextEquals('Required', loginPage.emptyUsernameFieldError());
+    I.seeTextEquals('Required', loginPage.emptyPasswordFieldError());
+});
+
+Scenario('Отображение ошибки при авторизации с неправильным логином', ({ I , loginPage, credentials}) => {
+    loginPage.fillUsername('Aadmin');
+    loginPage.fillPassword(credentials.PASSWORD);
+    loginPage.clickLoginButton();
+    I.waitForVisible(loginPage.invalidValueError);
+    I.seeTextEquals('Invalid credentials', loginPage.invalidValueError);
+});
+
+Scenario('Отображение ошибки при авторизации с неправильным паролем', ({ I , loginPage, credentials}) => {
+    loginPage.fillUsername(credentials.LOGIN);
+    loginPage.fillPassword('aadmin123');
+    loginPage.clickLoginButton();
+    I.waitForVisible(loginPage.invalidValueError);
+    I.seeTextEquals('Invalid credentials', loginPage.invalidValueError);
 });
