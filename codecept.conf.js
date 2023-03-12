@@ -2,10 +2,10 @@ require('dotenv').config();
 
 exports.config = {
   tests: './tests/*_test.js',
-  output: './output',
+  output: './framework/output',
   helpers: {
     Playwright: {
-      url: 'https://opensource-demo.orangehrmlive.com',
+      url: process.env.BASE_URL,
       show: true,
       browser: 'chromium',
       restart: 'context',
@@ -19,14 +19,10 @@ exports.config = {
   },
   include: {
     I: './steps_file.js',
-    loginPage: "./pages/Login.js",
-    addEmployeePage: "./pages/AddEmployee.js",
-    employeeListPage: "./pages/EmployeeList.js",
-    employeeDetailPage: "./pages/EmployeeDetail.js",
-    credentials: {
-      LOGIN: process.env.LOGIN,
-      PASSWORD: process.env.PASSWORD
-    },
+    loginPage: "./framework/pages/Login.js",
+    addEmployeePage: "./framework/pages/AddEmployee.js",
+    employeeListPage: "./framework/pages/EmployeeList.js",
+    employeeDetailPage: "./framework/pages/EmployeeDetail.js",
   },
   name: 'qajs-2022-11-dostybayeva-codeceptjs',
 }

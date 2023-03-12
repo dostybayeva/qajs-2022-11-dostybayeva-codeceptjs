@@ -2,7 +2,7 @@
   "name": "qajs-2022-11-dostybayeva-codeceptjs",
   "version": "1.0.0",
   "description": "UI-автотесты на CRM-систему ORANGE",
-  "main": "framework/config/codecept.conf.js",
+  "main": "codecept.conf.js",
   "scripts": {
     "codeceptjs": "codeceptjs run --steps --verbose"
   },

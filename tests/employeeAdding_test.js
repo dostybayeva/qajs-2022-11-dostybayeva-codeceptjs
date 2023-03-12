@@ -1,3 +1,5 @@
+const config = require("../framework/config/credentials");
+
 Feature('employeeAdding');
 
 const firstName = 'Aizhan';
@@ -6,10 +8,10 @@ const lastName = 'Testing';
 const usernameForLogin = 'aizhan';
 const passwordForLogin = 'Aizhan123*';
 
-Before(({loginPage, addEmployeePage, credentials}) => {
+Before(({loginPage, addEmployeePage}) => {
     loginPage.visit();
-    loginPage.fillUsername(credentials.LOGIN);
-    loginPage.fillPassword(credentials.PASSWORD);
+    loginPage.fillUsername(config.LOGIN);
+    loginPage.fillPassword(config.PASSWORD);
     loginPage.clickLoginButton();
     addEmployeePage.visit();
 });

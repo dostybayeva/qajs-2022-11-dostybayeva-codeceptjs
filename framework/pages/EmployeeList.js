@@ -1,4 +1,4 @@
-const { I } = inject();
+const { I, employeeDetailPage } = inject();
 
 module.exports = {
     /**
@@ -40,6 +40,11 @@ module.exports = {
      * Чек-бокс выбора всех записей в списке
      */
     chooseAll: '.oxd-table-header-cell .oxd-checkbox-wrapper',
+
+    /**
+     * Поле с именем работника в результате поиска
+     */
+    employeeNameInSearchResult: '.oxd-table-cell:nth-child(3)',
 
     /**
      * Переходит на стр списка работников
@@ -86,20 +91,12 @@ module.exports = {
     },
 
     /**
-     * Достает поля имени работника в результате поиска
-     *
-     * @returns {Locator}
-     */
-    employeeNameInSearchResult() {
-        return locate('.oxd-table-cell').at(3)
-    },
-
-    /**
      * Нажимает на запись по одному работнику
      */
     clickByEmployeeRow() {
-        I.click(this.employeeNameInSearchResult());
-        I.waitForVisible(this.employeeName);
+        I.waitForVisible(this.employeeNameInSearchResult);
+        I.click(this.employeeNameInSearchResult);
+        I.waitForVisible(employeeDetailPage.employeeName);
     },
 
     /**

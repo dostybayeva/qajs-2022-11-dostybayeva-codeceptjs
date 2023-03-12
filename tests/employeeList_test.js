@@ -1,12 +1,14 @@
+const config = require("../framework/config/credentials");
+
 Feature('employeeList');
 
 const firstName = 'Aizhan';
 const lastName = 'Testing';
 
-Before(({loginPage, addEmployeePage, employeeListPage, credentials}) => {
+Before(({loginPage, addEmployeePage, employeeListPage}) => {
     loginPage.visit();
-    loginPage.fillUsername(credentials.LOGIN);
-    loginPage.fillPassword(credentials.PASSWORD);
+    loginPage.fillUsername(config.LOGIN);
+    loginPage.fillPassword(config.PASSWORD);
     loginPage.clickLoginButton();
     addEmployeePage.visit();
     addEmployeePage.fillFirstName(firstName);
@@ -21,11 +23,11 @@ Scenario('Поиск работника по имени из списка', ({ I
     I.seeTextEquals(firstName, employeeListPage.employeeNameInSearchResult);
 });
 
-Scenario('Переход в детальную информацию по одному работнику из списка', ({ I , employeeListPage}) => {
+Scenario('Переход в детальную информацию по одному работнику из списка', ({ I , employeeListPage, employeeDetailPage}) => {
     employeeListPage.fillEmployeeNameForSort(firstName);
     employeeListPage.clickSearchButton();
     employeeListPage.clickByEmployeeRow();
-    I.seeTextEquals(`${firstName} ${lastName}`, employeeListPage.employeeName);
+    I.seeTextEquals(`${firstName} ${lastName}`, employeeDetailPage.employeeName);
 });
 
 // Удаляем созданных пользователей
