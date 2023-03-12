@@ -1,4 +1,4 @@
-Feature.skip('auth');
+Feature('auth');
 
 Before(({loginPage}) => {
     loginPage.visit();

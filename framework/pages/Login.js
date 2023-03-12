@@ -4,7 +4,7 @@ module.exports = {
     /**
      * Стр логина
      */
-    loginPage: '/web/index.php/auth/login',
+    loginUrl: '/web/index.php/auth/login',
 
     /**
      * Форма логина
@@ -40,7 +40,7 @@ module.exports = {
      * Переходит на стр логина
      */
     visit() {
-        I.amOnPage(this.loginPage);
+        I.amOnPage(this.loginUrl);
         I.waitForVisible(this.loginForm);
     },
 

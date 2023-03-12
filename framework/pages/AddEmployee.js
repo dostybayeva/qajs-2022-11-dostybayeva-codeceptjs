@@ -4,7 +4,7 @@ module.exports = {
     /**
      * Стр добавления нового работника
      */
-    addEmployeePage: '/web/index.php/pim/addEmployee',
+    addEmployeeUrl: '/web/index.php/pim/addEmployee',
 
     /**
      * Форма добавления работника
@@ -15,6 +15,11 @@ module.exports = {
      * Поле ввода имени работника
      */
     firstNameField: '[name="firstName"]',
+
+    /**
+     * Поле ввода второго имени работника
+     */
+    middleNameField: '[name="middleName"]',
 
     /**
      * Поле ввода фамилии работника
@@ -50,7 +55,7 @@ module.exports = {
      * Переходит на стр добавления нового работника
      */
     visit() {
-        I.amOnPage(this.addEmployeePage);
+        I.amOnPage(this.addEmployeeUrl);
         I.waitForVisible(this.employeeForm);
     },
 
@@ -62,6 +67,16 @@ module.exports = {
     fillFirstName(firstName) {
         I.waitForVisible(this.firstNameField);
         I.fillField(this.firstNameField, firstName);
+    },
+
+    /**
+     * Заполняет второе имя работника
+     *
+     * @param middleName
+     */
+    fillMiddleName(middleName) {
+        I.waitForVisible(this.middleNameField);
+        I.fillField(this.middleNameField, middleName);
     },
 
     /**
@@ -132,29 +147,29 @@ module.exports = {
                         .withText(fieldName))));
     },
 
-    /**
-     * Достает локатор ошибки при пустом поле имени
-     * @returns {Locator}
-     */
-    emptyFirstNameFieldError() {
-        return this.getEmptyFieldErrorLocator(this.firstNameField);
-    },
-
-    /**
-     * Достает локатор ошибки при пустом поле фамилии
-     * @returns {Locator}
-     */
-    emptyLastNameFieldError() {
-        return this.getEmptyFieldErrorLocator(this.lastNameField);
-    },
-
-    /**
-     * Достает локатор ошибок для полей логин/пароль
-     *
-     * @param fieldLocator
-     * @returns {Locator}
-     */
-    getEmptyFieldErrorLocator(fieldLocator) {
-        return locate(this.emptyFieldError).after(locate('div').withChild(fieldLocator));
-    },
+    // /**
+    //  * Достает локатор ошибки при пустом поле имени
+    //  * @returns {Locator}
+    //  */
+    // emptyFirstNameFieldError() {
+    //     return this.getEmptyFieldErrorLocator(this.firstNameField);
+    // },
+    //
+    // /**
+    //  * Достает локатор ошибки при пустом поле фамилии
+    //  * @returns {Locator}
+    //  */
+    // emptyLastNameFieldError() {
+    //     return this.getEmptyFieldErrorLocator(this.lastNameField);
+    // },
+    //
+    // /**
+    //  * Достает локатор ошибок для полей логин/пароль
+    //  *
+    //  * @param fieldLocator
+    //  * @returns {Locator}
+    //  */
+    // getEmptyFieldErrorLocator(fieldLocator) {
+    //     return locate(this.emptyFieldError).after(locate('div').withChild(fieldLocator));
+    // },
 }

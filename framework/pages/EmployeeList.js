@@ -4,17 +4,7 @@ module.exports = {
     /**
      * Стр списка работников
      */
-    employeeListPage: '/web/index.php/pim/viewEmployeeList',
-
-    /**
-     * Подстраница одного работника
-     */
-    employeeDetailPath: '/viewPersonalDetails',
-
-    /**
-     * Имя работника
-     */
-    employeeName: '.orangehrm-edit-employee-name > h6',
+    employeeListUrl: '/web/index.php/pim/viewEmployeeList',
 
     /**
      * Блок списка работников
@@ -55,7 +45,7 @@ module.exports = {
      * Переходит на стр списка работников
      */
     visit() {
-        I.amOnPage(this.employeeListPage);
+        I.amOnPage(this.employeeListUrl);
         I.waitForVisible(this.employeeList);
     },
 

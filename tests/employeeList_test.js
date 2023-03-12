@@ -21,17 +21,19 @@ Scenario('Поиск работника по имени из списка', ({ I
     I.seeTextEquals(firstName, employeeListPage.employeeNameInSearchResult);
 });
 
-Scenario('Переход в детальную информацию по одному работнику', ({ I , employeeListPage}) => {
+Scenario('Переход в детальную информацию по одному работнику из списка', ({ I , employeeListPage}) => {
     employeeListPage.fillEmployeeNameForSort(firstName);
     employeeListPage.clickSearchButton();
     employeeListPage.clickByEmployeeRow();
     I.seeTextEquals(`${firstName} ${lastName}`, employeeListPage.employeeName);
 });
 
-Scenario('Удаление выбранных работников из списка', ({employeeListPage}) => {
+// Удаляем созданных пользователей
+After(({employeeListPage}) => {
+    employeeListPage.visit();
     employeeListPage.fillEmployeeNameForSort(firstName);
     employeeListPage.clickSearchButton();
     employeeListPage.clickChooseAll();
     employeeListPage.clickEmployeeDeleteButton();
     employeeListPage.clickDeleteButtonInPopup();
-})
+});

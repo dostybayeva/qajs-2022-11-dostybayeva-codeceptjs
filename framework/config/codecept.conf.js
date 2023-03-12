@@ -10,15 +10,19 @@ exports.config = {
       browser: 'chromium',
       restart: 'context',
       waitForNavigation: 'networkidle',
-      waitForTimeout: 20000,
-      getPageTimeout: 20000,
-    }
+      waitForTimeout: 50000,
+      getPageTimeout: 50000,
+    },
+    ChaiWrapper: {
+      require: 'codeceptjs-chai',
+    },
   },
   include: {
     I: './steps_file.js',
     loginPage: "./pages/Login.js",
     addEmployeePage: "./pages/AddEmployee.js",
     employeeListPage: "./pages/EmployeeList.js",
+    employeeDetailPage: "./pages/EmployeeDetail.js",
     credentials: {
       LOGIN: process.env.LOGIN,
       PASSWORD: process.env.PASSWORD
