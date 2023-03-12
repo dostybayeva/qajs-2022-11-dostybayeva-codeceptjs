@@ -20,7 +20,6 @@ Scenario('Добавление нового работника с неполны
     addEmployeePage.fillFirstName(firstName);
     addEmployeePage.fillLastName(lastName);
     addEmployeePage.clickSaveButton();
-    I.seeInCurrentUrl(employeeDetailPage.employeeDetailUrl);
     I.seeTextEquals(`${firstName} ${lastName}`, employeeDetailPage.employeeName);
 });
 
@@ -47,7 +46,6 @@ Scenario('Добавление нового работника с данными
     addEmployeePage.fillPasswordForLoginDetail(passwordForLogin);
     addEmployeePage.fillConfirmPasswordForLoginDetail(passwordForLogin);
     addEmployeePage.clickSaveButton();
-    I.seeInCurrentUrl(employeeDetailPage.employeeDetailUrl);
     I.seeTextEquals(`${firstName} ${lastName}`, employeeDetailPage.employeeName);
 });
 

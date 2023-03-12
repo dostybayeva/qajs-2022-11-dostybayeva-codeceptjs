@@ -1,4 +1,4 @@
-const { I, employeeDetailPage } = inject();
+const { I, employeeDetailPage, employeeElements } = inject();
 
 module.exports = {
     /**
@@ -15,16 +15,6 @@ module.exports = {
      * Локатор для поля ввода имени в сортировке
      */
     sortByEmployeeNameField: '[placeholder="Type for hints..."]',
-
-    /**
-     * Кнопка поиска
-     */
-    searchButton: '.orangehrm-left-space',
-
-    /**
-     * Лоадер загрузки
-     */
-    loadSpinner: '.oxd-loading-spinner',
 
     /**
      * Кнопка удаления выбранных на стр списка работников
@@ -68,9 +58,9 @@ module.exports = {
      * Нажимает на кнопку поиска
      */
     clickSearchButton() {
-        I.waitForVisible(this.searchButton);
-        I.click(this.searchButton);
-        I.waitForInvisible(this.loadSpinner);
+        I.waitForVisible(employeeElements.saveAndSearchButton);
+        I.click(employeeElements.saveAndSearchButton);
+        I.waitForInvisible(employeeElements.loadSpinner);
     },
 
     /**

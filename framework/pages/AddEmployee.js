@@ -1,4 +1,4 @@
-const { I } = inject();
+const { I, employeeDetailPage, employeeElements } = inject();
 
 module.exports = {
     /**
@@ -12,31 +12,6 @@ module.exports = {
     employeeForm: '.orangehrm-employee-form',
 
     /**
-     * Поле ввода имени работника
-     */
-    firstNameField: '[name="firstName"]',
-
-    /**
-     * Поле ввода второго имени работника
-     */
-    middleNameField: '[name="middleName"]',
-
-    /**
-     * Поле ввода фамилии работника
-     */
-    lastNameField: '[name="lastName"]',
-
-    /**
-     * Кнопка сохранить
-     */
-    saveButton: '.orangehrm-left-space',
-
-    /**
-     * Лоадер после сохранения
-     */
-    loadSpinner: '.oxd-loading-spinner',
-
-    /**
      * Чек-бокс для создания данных логина
      */
     createLoginDetailsCheckBox: '.oxd-switch-wrapper',
@@ -45,11 +20,6 @@ module.exports = {
      * Локатор инпут-элементов в блоке заполнения данных логина
      */
     inputFieldsInLoginDetails: 'input[autocomplete="off"]',
-
-    /**
-     * Ошибка при пустом поле логина/пароля
-     */
-    emptyFieldError: '.oxd-input-field-error-message',
 
     /**
      * Переходит на стр добавления нового работника
@@ -65,8 +35,8 @@ module.exports = {
      * @param firstName
      */
     fillFirstName(firstName) {
-        I.waitForVisible(this.firstNameField);
-        I.fillField(this.firstNameField, firstName);
+        I.waitForVisible(employeeElements.firstNameField);
+        I.fillField(employeeElements.firstNameField, firstName);
     },
 
     /**
@@ -75,8 +45,8 @@ module.exports = {
      * @param middleName
      */
     fillMiddleName(middleName) {
-        I.waitForVisible(this.middleNameField);
-        I.fillField(this.middleNameField, middleName);
+        I.waitForVisible(employeeElements.middleNameField);
+        I.fillField(employeeElements.middleNameField, middleName);
     },
 
     /**
@@ -85,17 +55,18 @@ module.exports = {
      * @param lastName
      */
     fillLastName(lastName) {
-        I.waitForVisible(this.lastNameField);
-        I.fillField(this.lastNameField, lastName);
+        I.waitForVisible(employeeElements.lastNameField);
+        I.fillField(employeeElements.lastNameField, lastName);
     },
 
     /**
      * Нажимает на кнопку сохранения
      */
     clickSaveButton() {
-        I.waitForVisible(this.saveButton);
-        I.click(this.saveButton);
-        I.waitForInvisible(this.loadSpinner);
+        I.waitForVisible(employeeElements.saveAndSearchButton);
+        I.click(employeeElements.saveAndSearchButton);
+        I.waitInUrl(employeeDetailPage.employeeDetailUrl);
+        I.waitForInvisible(employeeElements.loadSpinner);
     },
 
     /**
@@ -146,30 +117,4 @@ module.exports = {
                     .withChild(locate('label')
                         .withText(fieldName))));
     },
-
-    // /**
-    //  * Достает локатор ошибки при пустом поле имени
-    //  * @returns {Locator}
-    //  */
-    // emptyFirstNameFieldError() {
-    //     return this.getEmptyFieldErrorLocator(this.firstNameField);
-    // },
-    //
-    // /**
-    //  * Достает локатор ошибки при пустом поле фамилии
-    //  * @returns {Locator}
-    //  */
-    // emptyLastNameFieldError() {
-    //     return this.getEmptyFieldErrorLocator(this.lastNameField);
-    // },
-    //
-    // /**
-    //  * Достает локатор ошибок для полей логин/пароль
-    //  *
-    //  * @param fieldLocator
-    //  * @returns {Locator}
-    //  */
-    // getEmptyFieldErrorLocator(fieldLocator) {
-    //     return locate(this.emptyFieldError).after(locate('div').withChild(fieldLocator));
-    // },
 }

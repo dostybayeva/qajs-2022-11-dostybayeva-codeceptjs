@@ -23,6 +23,7 @@ exports.config = {
     addEmployeePage: "./framework/pages/AddEmployee.js",
     employeeListPage: "./framework/pages/EmployeeList.js",
     employeeDetailPage: "./framework/pages/EmployeeDetail.js",
+    employeeElements: "./framework/elements/Employee.js"
   },
   name: 'qajs-2022-11-dostybayeva-codeceptjs',
 }
