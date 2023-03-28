@@ -4,7 +4,7 @@
   "description": "UI-автотесты на CRM-систему ORANGE",
   "main": "codecept.conf.js",
   "scripts": {
-    "codeceptjs": "codeceptjs run --steps --verbose"
+    "codeceptjs": "codeceptjs run --plugins allure --steps --verbose"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,10 @@
   "dependencies": {
     "codeceptjs": "^3.4.1",
     "codeceptjs-chai": "^2.3.2",
-    "playwright": "^1.31.2",
-    "dotenv": "^16.0.2"
+    "dotenv": "^16.0.2",
+    "playwright": "^1.31.2"
+  },
+  "devDependencies": {
+    "@codeceptjs/allure-legacy": "^1.0.2"
   }
 }

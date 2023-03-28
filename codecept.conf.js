@@ -26,4 +26,13 @@ exports.config = {
     employeeElements: "./framework/elements/Employee.js"
   },
   name: 'qajs-2022-11-dostybayeva-codeceptjs',
+  plugins: {
+    screenshotOnFail: {
+      enabled: true
+    },
+    allure: {
+      enabled: true,
+      require: '@codeceptjs/allure-legacy'
+    }
+  }
 }
