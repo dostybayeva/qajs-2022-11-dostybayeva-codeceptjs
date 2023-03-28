@@ -40,4 +40,5 @@ jobs:
         with:
           name: report
           if-no-files-found: error
-          path: ./framework/output
+          run: allure serve ./framework/output
+
