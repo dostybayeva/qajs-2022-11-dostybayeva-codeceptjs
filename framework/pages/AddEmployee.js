@@ -66,7 +66,7 @@ module.exports = {
         I.waitForVisible(employeeElements.saveAndSearchButton);
         I.click(employeeElements.saveAndSearchButton);
         I.waitInUrl(employeeDetailPage.employeeDetailUrl);
-        I.waitForInvisible(employeeElements.loadSpinner);
+        I.waitForVisible(employeeDetailPage.employeeName);
     },
 
     /**
