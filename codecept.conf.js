@@ -27,9 +27,6 @@ exports.config = {
   },
   name: 'qajs-2022-11-dostybayeva-codeceptjs',
   plugins: {
-    screenshotOnFail: {
-      enabled: true
-    },
     allure: {
       enabled: true,
       require: '@codeceptjs/allure-legacy'
